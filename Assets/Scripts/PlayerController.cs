@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * _speedH * Time.deltaTime,0f, Input.GetAxis("Vertical") * _speedV * Time.deltaTime);
+        _body.velocity = transform.right * _speedV;
+        //transform.Translate(_speedV * Time.deltaTime,0f, Input.GetAxis("Horizontal") * -_speedH * Time.deltaTime);
     }
 
     private void LookBack()
