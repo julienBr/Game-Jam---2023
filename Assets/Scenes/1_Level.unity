@@ -7886,7 +7886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedH: 20
-  _speedV: 10
+  _speedV: 60
   _jump: 750
 --- !u!4 &1885771763
 Transform:
