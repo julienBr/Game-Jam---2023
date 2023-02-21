@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
     [SerializeField] private float _speedH;
     [SerializeField] private float _speedV;
     [SerializeField] private float _jump;
