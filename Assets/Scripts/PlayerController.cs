@@ -4,10 +4,10 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _target;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speedH;
+    [SerializeField] private float _speedV;
     [SerializeField] private float _jump;
     private Animator _camAnimator;
-    private NavMeshAgent _agent;
     private Animator _animator;
     private Rigidbody _body;
     private bool _lookBack;
@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _camAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
-        _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        _body = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        _body = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        _agent.SetDestination(_target.position);
         Move();
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -35,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * _speed * Time.deltaTime,0f, 0f);
+        transform.Translate(Input.GetAxis("Horizontal") * _speedH * Time.deltaTime,0f, Input.GetAxis("Vertical") * _speedV * Time.deltaTime);
     }
 
     private void LookBack()
