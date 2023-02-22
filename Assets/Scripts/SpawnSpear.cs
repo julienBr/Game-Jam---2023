@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnSpear : MonoBehaviour
@@ -17,11 +14,19 @@ public class SpawnSpear : MonoBehaviour
         CameraController.SpearFall -= SpearSpawn;
     }
 
+    private void Start()
+    {
+        _appDatas.index = 0;
+    }
+
+    private void Update()
+    {
+        if (_appDatas.index == 10) _appDatas.index = 0;
+    }
+
     private void SpearSpawn()
     {
-        for (int i = 0; i < _appDatas.posSpear.Count; i++)
-        {
-            Instantiate(_appDatas.spear, _appDatas.posSpear[i].Position, Quaternion.identity);
-        }
+        Instantiate(_appDatas.spear, _appDatas.posSpear[_appDatas.index].Position, Quaternion.Euler(_appDatas.posSpear[_appDatas.index].Rotation));
+        _appDatas.index++;
     }
 }

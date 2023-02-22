@@ -12,6 +12,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -206.55907
       objectReference: {fileID: 0}
@@ -53,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
       propertyPath: m_Name
-      value: Obstacle02
+      value: Spear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
@@ -62,8 +74,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3652e3c7d2375054ca9ac37c9bbfb1f9, type: 3}
   m_PrefabInstance: {fileID: 3026543820895101596}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &6964961683190691969
-BoxCollider:
+--- !u!136 &3996540285687022286
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -72,10 +84,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.05, z: 0.15088439}
-  m_Center: {x: 0.00000003911555, y: -3.7199586e-15, z: 0.06544219}
---- !u!54 &1291647917834605971
+  m_Radius: 0.03
+  m_Height: 0.15
+  m_Direction: 2
+  m_Center: {x: 0.000000039115548, y: 0, z: 0.0654422}
+--- !u!54 &7607541495217368390
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -58,7 +58,6 @@ public class CameraController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Death")) PlayerDeath?.Invoke();
         else if(other.gameObject.CompareTag("Win")) PlayerWin?.Invoke();
-
-        if (other.gameObject.CompareTag("Spear")) SpearFall?.Invoke();
+        else if (other.gameObject.CompareTag("Spear")) SpearFall?.Invoke();
     }
 }
