@@ -18,7 +18,6 @@ public class GameUI : MonoBehaviour
 
     private void DisplayLooseWindow()
     {
-        Time.timeScale = 0f;
         _looseWindow.SetActive(true);
         Cursor.visible = true;
     }
