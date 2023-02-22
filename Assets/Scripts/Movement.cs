@@ -14,6 +14,10 @@ public class Movement : MonoBehaviour
 
     private Vector3 _input;
 
+    public float slideSpeedIncrease;
+    
+    public float slideSpeedDecrease;
+
     private float _speed;
 
     public float runSpeed;
@@ -26,6 +30,8 @@ public class Movement : MonoBehaviour
 
     private Vector3 _velocityY;
 
+    private Vector3 _forwardDirection;
+
     private int _jumpCharges;
 
     private bool _isGrounded;
@@ -33,6 +39,8 @@ public class Movement : MonoBehaviour
     private bool _isSprinting;
     
     private bool _isCrouching;
+
+    private bool _isSliding;
 
     private float _gravity;
 
@@ -47,12 +55,26 @@ public class Movement : MonoBehaviour
     private Vector3 _crouchingCenter = new Vector3(0, 1.9f, 0);
 
     private Vector3 _standingCenter = new Vector3(0, -0.44f, 0);
+
+    private float _slideTimer;
+
+    public float maxSlideTimer;
     
     
     void Start()
     {
         _controller = GetComponent<CharacterController>();
         _startHeight = transform.localScale.y;
+    }
+
+    void IncreaseSpeed(float speedIncrease)
+    {
+        _speed += speedIncrease;
+    }
+
+    void DecreaseSpeed(float speedDecrease)
+    {
+        _speed -= speedDecrease * Time.deltaTime;
     }
 
     void HandleInput()
@@ -91,13 +113,23 @@ public class Movement : MonoBehaviour
     {
         HandleInput();
 
-        if (_isGrounded)
+        if (_isGrounded && !_isSliding)
         {
             GroundedMovment();
         }
-        else
+        else if (!_isGrounded)
         {
             Airmovement();
+        }
+        else if (_isSliding)
+        {
+            SlideMovement();
+            DecreaseSpeed(slideSpeedDecrease);
+            _slideTimer -= 1f * Time.deltaTime;
+            if (_slideTimer < 0)
+            {
+                _isSliding = false;
+            }
         }
         
         CheckGround();
@@ -137,6 +169,12 @@ public class Movement : MonoBehaviour
         _move = Vector3.ClampMagnitude(_move, _speed);
     }
 
+    void SlideMovement()
+    {
+        _move += _forwardDirection;
+        _move = Vector3.ClampMagnitude(_move, _speed);
+    }
+
     void CheckGround()
     {
         _isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
@@ -165,6 +203,17 @@ public class Movement : MonoBehaviour
         _controller.center = _crouchingCenter;
         transform.localScale = new Vector3(transform.localScale.x, _crouchHeight, transform.localScale.z);
         _isCrouching = true;
+        if (_speed > runSpeed)
+        {
+            _isSliding = true;
+            _forwardDirection = transform.forward;
+            if (_isGrounded)
+            {
+                IncreaseSpeed(slideSpeedIncrease);
+            }
+
+            _slideTimer = maxSlideTimer;
+        }
     }
 
     void ExitCrouch()
@@ -173,5 +222,6 @@ public class Movement : MonoBehaviour
         _controller.center = _standingCenter;
         transform.localScale = new Vector3(transform.localScale.x, _startHeight, transform.localScale.z);
         _isCrouching = false;
+        _isSliding = false;
     }
 }
