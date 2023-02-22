@@ -16,6 +16,10 @@ public class CameraController : MonoBehaviour
     public static event DeathEvent PlayerDeath;
     public delegate void WinEvent();
     public static event WinEvent PlayerWin;
+
+    public delegate void SpearEvent();
+
+    public static event SpearEvent SpearFall;
     
     private void Start()
     {
