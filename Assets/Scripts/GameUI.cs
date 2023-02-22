@@ -20,6 +20,7 @@ public class GameUI : MonoBehaviour
     {
         Time.timeScale = 0f;
         _looseWindow.SetActive(true);
+        Cursor.visible = true;
     }
     
     private void Update()

@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
         _rotX = Mathf.Clamp(_rotX, minX, maxX);
         if (Time.timeScale == 1f)
         {
+            Cursor.visible = false;
             transform.localEulerAngles = new Vector3(0, _rotY, 0);
             cam.transform.localEulerAngles = new Vector3(-_rotX, 0, _move.tilt);
         }
