@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class ApplicationManager : MonoBehaviour
 {
-
 	[SerializeField] private GameObject _fade;
 
 	public void Quit () 
@@ -25,6 +24,6 @@ public class ApplicationManager : MonoBehaviour
 	{
 		_fade.GetComponent<Animator>().SetTrigger("FadeOut");
 		yield return new WaitForSeconds(1f);
-		SceneManager.LoadScene("1_Level");
+		SceneManager.LoadScene("LEVELTEST");
 	}
 }
