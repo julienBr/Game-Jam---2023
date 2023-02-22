@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     private Movement _move;
     public delegate void DeathEvent();
     public static event DeathEvent PlayerDeath;
+    public delegate void WinEvent();
+    public static event WinEvent PlayerWin;
     
     private void Start()
     {
@@ -50,9 +52,7 @@ public class CameraController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Death"))
-        {
-            PlayerDeath?.Invoke();
-        }
+        if (other.gameObject.CompareTag("Death")) PlayerDeath?.Invoke();
+        else if(other.gameObject.CompareTag("Win")) PlayerWin?.Invoke();
     }
 }
