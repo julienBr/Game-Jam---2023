@@ -14,33 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spear: {fileID: 2792539908069531597, guid: f6eba2c96e92acb4d9e3daf706a4fd8f, type: 3}
   posSpear:
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
-  - Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0}
-    Scale: {x: 0, y: 0, z: 0}
+  - Position: {x: 59, y: 317, z: -2200}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 59, y: 317, z: -1653}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 59, y: 317, z: 1210}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 74, y: 317, z: 66}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 54, y: 317, z: 121}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 54, y: 317, z: 277}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 63, y: 317, z: 1}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 79, y: 317, z: -63}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 79, y: 317, z: 38}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
+  - Position: {x: 79, y: 317, z: -137}
+    Rotation: {x: 90, y: 0, z: 0}
+    Scale: {x: 100, y: 100, z: 1000}
