@@ -416,7 +416,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117675893}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1001 &122284668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5850,6 +5850,10 @@ PrefabInstance:
     - target: {fileID: 6874772568264896113, guid: 9926717e878501c4b9261588921f5cad, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874772568264896117, guid: 9926717e878501c4b9261588921f5cad, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9926717e878501c4b9261588921f5cad, type: 3}

@@ -29,10 +29,12 @@ public class CameraController : MonoBehaviour
         _rotX += Input.GetAxis("Mouse Y") * sensitivity;
 
         _rotX = Mathf.Clamp(_rotX, minX, maxX);
+        if (Time.timeScale == 1f)
+        {
+            transform.localEulerAngles = new Vector3(0, _rotY, 0);
+            cam.transform.localEulerAngles = new Vector3(-_rotX, 0, _move.tilt);
+        }
 
-        transform.localEulerAngles = new Vector3(0, _rotY, 0);
-        cam.transform.localEulerAngles = new Vector3(-_rotX, 0, _move.tilt);
-        
         if (Input.GetMouseButtonDown(1))
         {
             if(!_lookBack) LookBack();
