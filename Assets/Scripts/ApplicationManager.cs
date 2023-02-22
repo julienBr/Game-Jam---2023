@@ -24,6 +24,6 @@ public class ApplicationManager : MonoBehaviour
 	{
 		_fade.GetComponent<Animator>().SetTrigger("FadeOut");
 		yield return new WaitForSeconds(1f);
-		SceneManager.LoadScene("LEVELTEST");
+		SceneManager.LoadScene("1_Level");
 	}
 }
