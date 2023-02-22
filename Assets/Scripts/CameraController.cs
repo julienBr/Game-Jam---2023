@@ -1,30 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     public float minX = -60f;
-
     public float maxX = 60f;
-
     public float sensitivity;
-
     public Camera cam;
-
-    private float _rotY = 0f;
-
-    private float _rotX = 0f;
+    private float _rotY;
+    private float _rotX;
     
-    
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     
-    void Update()
+    private void Update()
     {
         _rotY += Input.GetAxis("Mouse X") * sensitivity;
         _rotX += Input.GetAxis("Mouse Y") * sensitivity;
