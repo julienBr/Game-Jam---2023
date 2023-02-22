@@ -4286,6 +4286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1954791885}
+  _looseWindow: {fileID: 0}
 --- !u!65 &855936587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4803,7 +4804,7 @@ MonoBehaviour:
   wallRunSpeedIncrease: 2
   wallRunSpeedDecrease: 1.5
   runSpeed: 20
-  sprintSpeed: 25
+  sprintSpeed: 30
   crouchSpeed: 15
   airSpeed: 0.3
   normalGravity: -13
@@ -9034,7 +9035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3774707469610109156, guid: d72b9970ad6685840b171adc379fa2ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.42
+      value: 10.45
       objectReference: {fileID: 0}
     - target: {fileID: -3708923684214084074, guid: d72b9970ad6685840b171adc379fa2ef, type: 3}
       propertyPath: m_Layer
@@ -11257,7 +11258,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.011939488, z: 0.019999994}
-  m_Center: {x: -7.737904e-16, y: 0.0040302533, z: 1.9093274e-17}
+  m_Center: {x: -7.737904e-16, y: 0.004029967, z: 1.9093274e-17}
 --- !u!65 &1832024118
 BoxCollider:
   m_ObjectHideFlags: 0
