@@ -8,17 +8,15 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody _body;
     private bool _lookBack;
-    private Vector3 _currentPosition;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _body = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        _currentPosition = transform.position;
         Move();
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -26,6 +24,7 @@ public class PlayerController : MonoBehaviour
             else LookForward();
         }
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) Slide();
     }
 
     private void Move()
@@ -48,5 +47,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _body.AddForce(0f, _jump, 0f);
+    }
+
+    private void Slide()
+    {
+        _animator.SetTrigger("Slide");
     }
 }
