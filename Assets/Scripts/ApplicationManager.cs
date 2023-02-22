@@ -16,7 +16,7 @@ public class ApplicationManager : MonoBehaviour
 		#endif
 	}
 
-	private void NewGame()
+	public void NewGame()
 	{
 		StartCoroutine(ThrowFade());
 	}
@@ -25,6 +25,6 @@ public class ApplicationManager : MonoBehaviour
 	{
 		_fade.GetComponent<Animator>().SetTrigger("FadeOut");
 		yield return new WaitForSeconds(1f);
-		SceneManager.LoadScene("1_Level_1");
+		SceneManager.LoadScene("1_Level");
 	}
 }
