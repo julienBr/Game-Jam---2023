@@ -19,6 +19,6 @@ public class SpawnSpear : MonoBehaviour
 
     private void SpearSpawn()
     {
-        
+        Instantiate(_appDatas.spear, _appDatas.posSpear[.Range(0, _appDatas.posSpear.Count)], Quaternion.identity);
     }
 }
