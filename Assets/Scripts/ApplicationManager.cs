@@ -6,7 +6,7 @@ public class ApplicationManager : MonoBehaviour
 {
 
 	[SerializeField] private GameObject _fade;
-	
+
 	public void Quit () 
 	{
 		#if UNITY_EDITOR

@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Animator _camAnimator;
+    [SerializeField] private AppDatas _data;
     public float minX = -60f;
     public float maxX = 60f;
     public float sensitivity;
@@ -10,6 +11,8 @@ public class CameraController : MonoBehaviour
     private float _rotY;
     private float _rotX;
     private bool _lookBack;
+    public delegate void DeathEvent();
+    public static event DeathEvent PlayerDeath;
     
     private void Start()
     {
@@ -43,5 +46,13 @@ public class CameraController : MonoBehaviour
     {
         _lookBack = false;
         _camAnimator.SetBool("LookBack", false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Death"))
+        {
+            PlayerDeath?.Invoke();
+        }
     }
 }
