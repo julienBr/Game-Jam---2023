@@ -7149,11 +7149,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  runSpeed: 40
-  sprintSpeed: 60
-  crouchSpeed: 4
-  airSpeed: 0.3
-  normalGravity: -13
+  runSpeed: 20
+  sprintSpeed: 40
+  crouchSpeed: 40
+  airSpeed: 10
+  normalGravity: -20
   jumpHeight: 5
 --- !u!65 &1421521670
 BoxCollider:
