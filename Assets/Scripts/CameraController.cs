@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     private float _rotY;
     private float _rotX;
     private bool _lookBack;
+    private Movement _move;
     public delegate void DeathEvent();
     public static event DeathEvent PlayerDeath;
     
@@ -18,6 +19,8 @@ public class CameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        _move = GetComponent<Movement>();
     }
     
     private void Update()
@@ -28,7 +31,8 @@ public class CameraController : MonoBehaviour
         _rotX = Mathf.Clamp(_rotX, minX, maxX);
 
         transform.localEulerAngles = new Vector3(0, _rotY, 0);
-        cam.transform.localEulerAngles = new Vector3(-_rotX, 0, 0);
+        cam.transform.localEulerAngles = new Vector3(-_rotX, 0, _move.tilt);
+        
         if (Input.GetMouseButtonDown(1))
         {
             if(!_lookBack) LookBack();

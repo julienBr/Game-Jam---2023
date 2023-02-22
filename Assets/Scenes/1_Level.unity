@@ -1027,6 +1027,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.020000001, z: 0.017485825}
   m_Center: {x: 0, y: 2.9865823e-17, z: 0.0012570821}
+--- !u!1 &184772584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2564ba4b978185e419ba5cf8f818db26, type: 3}
+  m_PrefabInstance: {fileID: 1936204092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &185796382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2253,6 +2258,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.020000005, z: 0.02}
   m_Center: {x: 0.0041594007, y: 0.000000045020393, z: -6.5977323e-16}
+--- !u!1 &449355715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2564ba4b978185e419ba5cf8f818db26, type: 3}
+  m_PrefabInstance: {fileID: 1782029564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &452710559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4688,16 +4698,24 @@ MonoBehaviour:
     m_Bits: 8
   wallMask:
     serializedVersion: 2
-    m_Bits: 0
-  slideSpeedIncrease: 20
-  slideSpeedDecrease: 3
-  runSpeed: 8
-  sprintSpeed: 12
-  crouchSpeed: 4
+    m_Bits: 64
+  slideSpeedIncrease: 10
+  slideSpeedDecrease: 5
+  wallRunSpeedIncrease: 2
+  wallRunSpeedDecrease: 1.5
+  runSpeed: 20
+  sprintSpeed: 25
+  crouchSpeed: 15
   airSpeed: 0.3
   normalGravity: -13
+  wallRunGravity: -1
   jumpHeight: 5
-  maxSlideTimer: 2
+  maxSlideTimer: 1
+  playerCamera: {fileID: 1457076365}
+  specialFov: 120
+  cameraChangeTime: 20
+  wallRunTilt: 20
+  tilt: 0
 --- !u!114 &968926146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4711,6 +4729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camAnimator: {fileID: 1457076367}
+  _data: {fileID: 0}
   minX: -60
   maxX: 60
   sensitivity: 5
@@ -4741,7 +4760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968926144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62, y: 1.42, z: -12.23}
+  m_LocalPosition: {x: -0.62, y: 2.23, z: -12.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9040,6 +9059,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: d72b9970ad6685840b171adc379fa2ef, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4201185936360271509, guid: d72b9970ad6685840b171adc379fa2ef, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -10311,6 +10334,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2564ba4b978185e419ba5cf8f818db26, type: 3}
   m_PrefabInstance: {fileID: 1782029564}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1782029568
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449355715}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc2fd79c978718f48831469c9b0fed8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1782554160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384095969250144, guid: 512151c1530b99343a884b12ee9c5e1e, type: 3}
@@ -11565,6 +11608,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2564ba4b978185e419ba5cf8f818db26, type: 3}
   m_PrefabInstance: {fileID: 1936204092}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1936204096
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184772584}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de6116b673745114a8e20cdf664a1d44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &1940399768
 BoxCollider:
   m_ObjectHideFlags: 0
