@@ -6856,6 +6856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2afad8547ed3f448e7344a0243fc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camAnimator: {fileID: 1457076367}
   minX: -60
   maxX: 60
   sensitivity: 1
@@ -7112,6 +7113,7 @@ GameObject:
   - component: {fileID: 1457076366}
   - component: {fileID: 1457076365}
   - component: {fileID: 1457076364}
+  - component: {fileID: 1457076367}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7185,6 +7187,26 @@ Transform:
   m_Father: {fileID: 1393758785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
+--- !u!95 &1457076367
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457076363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b75a7dc16d3024b95f5968355d0919, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &1471352407
 BoxCollider:
   m_ObjectHideFlags: 0

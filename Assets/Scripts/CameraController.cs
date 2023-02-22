@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Animator _camAnimator;
     public float minX = -60f;
     public float maxX = 60f;
     public float sensitivity;
     public Camera cam;
     private float _rotY;
     private float _rotX;
+    private bool _lookBack;
     
     private void Start()
     {
@@ -24,5 +26,22 @@ public class CameraController : MonoBehaviour
 
         transform.localEulerAngles = new Vector3(0, _rotY, 0);
         cam.transform.localEulerAngles = new Vector3(-_rotX, 0, 0);
+        if (Input.GetMouseButtonDown(1))
+        {
+            if(!_lookBack) LookBack();
+            else LookForward();
+        }
+    }
+    
+    private void LookBack()
+    {
+        _lookBack = true;
+        _camAnimator.SetBool("LookBack", true);
+    }
+
+    private void LookForward()
+    {
+        _lookBack = false;
+        _camAnimator.SetBool("LookBack", false);
     }
 }
