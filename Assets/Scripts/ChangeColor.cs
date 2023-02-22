@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class ChangeColor : MonoBehaviour, IPointerClickHandler
 {
-	void OnEnable ()
-	{
-	}
 
 	public void SetRed(float value)
 	{

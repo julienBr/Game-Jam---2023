@@ -1,151 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     private CharacterController _controller;
-
     public Transform groundCheck;
-
     public LayerMask groundMask;
-
     public LayerMask wallMask;
-
     private Vector3 _move;
-
     private Vector3 _input;
-
     public float slideSpeedIncrease;
-    
     public float slideSpeedDecrease;
-    
     public float wallRunSpeedIncrease;
-    
     public float wallRunSpeedDecrease;
-
     private float _speed;
-
     public float runSpeed;
-
     public float sprintSpeed;
-
     public float crouchSpeed;
-
     public float airSpeed;
-
     private Vector3 _velocityY;
-
     private Vector3 _forwardDirection;
-
     private int _jumpCharges;
-
     private bool _isGrounded;
-    
     private bool _isSprinting;
-    
     private bool _isCrouching;
-
     private bool _isSliding;
-
     private bool _isWallRunning;
-
     private float _gravity;
-
     public float normalGravity;
-
     public float wallRunGravity;
-
     public float jumpHeight;
-
     private float _startHeight;
-
     private float _crouchHeight = 0.1f;
-
     private Vector3 _crouchingCenter = new Vector3(0, 1.9f, 0);
-
     private Vector3 _standingCenter = new Vector3(0, -0.44f, 0);
-
     private float _slideTimer;
-
     public float maxSlideTimer;
-
-    private bool _hasWallRun = false;
-
+    private bool _hasWallRun;
     private bool _onLeftWall;
-
     private bool _onRightWall;
-
     private RaycastHit _leftWallHit;
-
     private RaycastHit _rightWallHit;
-
     private Vector3 _wallNormal;
-
     private Vector3 _lastWallNormal;
-
     public Camera playerCamera;
-
     private float _normalFov;
-
     public float specialFov;
-
     public float cameraChangeTime;
-
     public float wallRunTilt;
-
     public float tilt;
-    
-    
-    void Start()
+
+    private void Start()
     {
         _controller = GetComponent<CharacterController>();
         _startHeight = transform.localScale.y;
         _normalFov = playerCamera.fieldOfView;
     }
 
-    void IncreaseSpeed(float speedIncrease)
+    private void IncreaseSpeed(float speedIncrease)
     {
         _speed += speedIncrease;
     }
 
-    void DecreaseSpeed(float speedDecrease)
-    {
-        _speed -= speedDecrease * Time.deltaTime;
-    }
+    private void DecreaseSpeed(float speedDecrease) { _speed -= speedDecrease * Time.deltaTime; }
 
-    void HandleInput()
+    private void HandleInput()
     {
         _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-
         _input = transform.TransformDirection(_input);
         _input = Vector3.ClampMagnitude(_input, 1f);
-
-        if (Input.GetKey(KeyCode.Space) && _jumpCharges > 0)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Crouch();
-        }
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            ExitCrouch();
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _isGrounded)
-        {
-            _isSprinting = true;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            _isSprinting = false;
-        }
+        if (Input.GetKey(KeyCode.Space) && _jumpCharges > 0) Jump();
+        if (Input.GetKeyDown(KeyCode.C)) Crouch();
+        if (Input.GetKeyUp(KeyCode.C)) ExitCrouch();
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _isGrounded) _isSprinting = true;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) _isSprinting = false;
     }
 
-    void CameraEffects()
+    private void CameraEffects()
     {
         float fov = _isWallRunning ? specialFov : _isSliding ? specialFov : _normalFov;
         playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, cameraChangeTime * Time.deltaTime);
