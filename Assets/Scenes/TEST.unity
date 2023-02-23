@@ -5784,7 +5784,7 @@ Transform:
   - {fileID: 721806497}
   - {fileID: 1527722307}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1087463549
 MonoBehaviour:
@@ -5798,9 +5798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d063330d8bf28b74493f5aa314396b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 15
+  _moveSpeed: 20
   _groundDrag: 5
-  _jumpForce: 10
+  _jumpForce: 15
   _jumpCooldown: 0.25
   _airMultiplier: 1
   _playerHeight: 2
@@ -6739,7 +6739,7 @@ Transform:
   m_Children:
   - {fileID: 1581792090}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1248005133
 MonoBehaviour:

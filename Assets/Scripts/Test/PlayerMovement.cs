@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -5,11 +6,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _groundDrag;
+    
+    [Header("Jumping")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpCooldown;
     [SerializeField] private float _airMultiplier;
-    private bool _readyToJump = true;
+    private bool _readyToJump;
 
+    [Header("Crouching")]
+    private float _startYScale;
+    private bool _readyToCrouch;
+    
     [Header("Ground Check")]
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _ground;
@@ -25,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        _readyToJump = true;
+        _startYScale = transform.localScale.y;
+        _readyToCrouch = true;
     }
 
     private void Update()
@@ -49,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
             _readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), _jumpCooldown);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _readyToCrouch && _isgrounded)
+        {
+            _readyToCrouch = false;
+            Crouch();
         }
     }
 
@@ -78,5 +93,19 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         _readyToJump = true;
+    }
+
+    private void Crouch()
+    {
+        StartCoroutine(Crouching());
+    }
+
+    private IEnumerator Crouching()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
+        _rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        yield return new WaitForSeconds(1f);
+        _readyToCrouch = true;
+        transform.localScale = new Vector3(transform.localScale.x, _startYScale, transform.localScale.z);
     }
 }
