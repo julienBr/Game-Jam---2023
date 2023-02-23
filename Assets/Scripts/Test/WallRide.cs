@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WallRide : MonoBehaviour
@@ -8,6 +9,8 @@ public class WallRide : MonoBehaviour
     [SerializeField] private float _wallRideForce;
     [SerializeField] private float _maxWallRideTime;
     private float _wallRideTimer;
+    private float _horizontalInput;
+    private float _verticalInput;
 
     [Header("Detection")]
     [SerializeField] private float _wallCheckDistance;
@@ -31,6 +34,12 @@ public class WallRide : MonoBehaviour
     private void Update()
     {
         CheckForWall();
+        StateMachine();
+    }
+
+    private void FixedUpdate()
+    {
+        if(_playerMovement.isWallRide) WallRideMovement();
     }
 
     private void CheckForWall()
@@ -48,11 +57,34 @@ public class WallRide : MonoBehaviour
 
     private void StateMachine()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        if ((_leftWall || _rightWall) && verticalInput > 0f && AboveGround())
+        _horizontalInput = Input.GetAxis("Horizontal");
+        _verticalInput = Input.GetAxis("Vertical");
+        if ((_leftWall || _rightWall) && _verticalInput > 0f && AboveGround())
         {
-            
+            if(!_playerMovement.isWallRide) StartWallRide();
         }
+        else
+        {
+            if(_playerMovement.isWallRide) StopWallRide();
+        }
+    }
+
+    private void StartWallRide()
+    {
+        _playerMovement.isWallRide = true;
+    }
+
+    private void WallRideMovement()
+    {
+        _rb.useGravity = false;
+        _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+        Vector3 wallNormal = _rightWall ? _rightWallHit.normal : _leftWallHit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+        _rb.AddForce(wallForward * _wallRideForce, ForceMode.Force);
+    }
+
+    private void StopWallRide()
+    {
+        _playerMovement.isWallRide = false;
     }
 }

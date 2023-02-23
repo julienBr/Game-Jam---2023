@@ -5745,6 +5745,7 @@ GameObject:
   - component: {fileID: 1087463548}
   - component: {fileID: 1087463547}
   - component: {fileID: 1087463549}
+  - component: {fileID: 1087463550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5807,6 +5808,30 @@ MonoBehaviour:
   _ground:
     serializedVersion: 2
     m_Bits: 8
+  _orientation: {fileID: 721806497}
+  isWallRide: 0
+--- !u!114 &1087463550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087463546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fcbc22fb2a563478ba7b79acfd8bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wall:
+    serializedVersion: 2
+    m_Bits: 64
+  _ground:
+    serializedVersion: 2
+    m_Bits: 8
+  _wallRideForce: 200
+  _maxWallRideTime: 1.5
+  _wallCheckDistance: 0.7
+  _minJumpHeight: 2
   _orientation: {fileID: 721806497}
 --- !u!1 &1113289620 stripped
 GameObject:
