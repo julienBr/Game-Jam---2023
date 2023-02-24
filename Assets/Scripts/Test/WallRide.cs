@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class WallRide : MonoBehaviour
@@ -8,9 +7,11 @@ public class WallRide : MonoBehaviour
     [SerializeField] private LayerMask _ground;
     [SerializeField] private float _wallRideForce;
     [SerializeField] private float _maxWallRideTime;
+    [SerializeField] private float _wallClimbSpeed;
     private float _wallRideTimer;
     private float _horizontalInput;
     private float _verticalInput;
+    private bool _isWallRide;
 
     [Header("Detection")]
     [SerializeField] private float _wallCheckDistance;
@@ -22,12 +23,10 @@ public class WallRide : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _orientation;
-    private PlayerMovement _playerMovement;
     private Rigidbody _rb;
 
     private void Start()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -39,7 +38,7 @@ public class WallRide : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_playerMovement.isWallRide) WallRideMovement();
+        if(_isWallRide) WallRideMovement();
     }
 
     private void CheckForWall()
@@ -61,17 +60,17 @@ public class WallRide : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         if ((_leftWall || _rightWall) && _verticalInput > 0f && AboveGround())
         {
-            if(!_playerMovement.isWallRide) StartWallRide();
+            if(!_isWallRide) StartWallRide();
         }
         else
         {
-            if(_playerMovement.isWallRide) StopWallRide();
+            if(_isWallRide) StopWallRide();
         }
     }
 
     private void StartWallRide()
     {
-        _playerMovement.isWallRide = true;
+        _isWallRide = true;
     }
 
     private void WallRideMovement()
@@ -80,11 +79,19 @@ public class WallRide : MonoBehaviour
         _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
         Vector3 wallNormal = _rightWall ? _rightWallHit.normal : _leftWallHit.normal;
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+        if ((_orientation.forward - wallForward).magnitude > (_orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
         _rb.AddForce(wallForward * _wallRideForce, ForceMode.Force);
+        if (PlayerCamera._xRotation < 0f)
+            _rb.velocity = new Vector3(_rb.velocity.x, _wallClimbSpeed, _rb.velocity.z);
+        else _rb.velocity = new Vector3(_rb.velocity.x, -_wallClimbSpeed, _rb.velocity.z);
+        if(!(_leftWall && _horizontalInput > 0f) && !(_rightWall && _horizontalInput < 0))
+            _rb.AddForce(-wallNormal * 100f, ForceMode.Force);
     }
 
     private void StopWallRide()
     {
-        _playerMovement.isWallRide = false;
+        _isWallRide = false;
+        _rb.useGravity = true;
     }
 }

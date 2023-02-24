@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float _moveSpeed;
-    //[SerializeField] private float _wallRideSpeed;
     [SerializeField] private float _groundDrag;
     
     [Header("Jumping")]
@@ -28,15 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalInput;
     private Vector3 _moveDirection;
     private Rigidbody _rb;
-    public bool isWallRide;
-    
-    /*public MovementState state;
 
-    public enum MovementState
-    {
-        
-    }*/
-    
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();

@@ -5,7 +5,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float _sensX;
     [SerializeField] private float _sensY;
     [SerializeField] private Transform _orientation;
-    private float _xRotation;
+    public static float _xRotation;
     private float _yRotation;
 
     private void Start()
