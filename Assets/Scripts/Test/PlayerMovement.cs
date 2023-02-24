@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerCamera _camera;
     
     private bool _isgrounded;
+    private bool _lookBack;
     private float _horizontalInput;
     private float _verticalInput;
     private Vector3 _moveDirection;
@@ -67,13 +68,18 @@ public class PlayerMovement : MonoBehaviour
             _readyToCrouch = false;
             Crouch();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if(!_lookBack) LookBack();
+            else LookForward();
+        }
     }
 
     private void MovePlayer()
     {
         _moveDirection = _orientation.forward * _verticalInput + _orientation.right * _horizontalInput;
-        if(_isgrounded) _rb.AddForce(_moveDirection.normalized * _moveSpeed * 10f, ForceMode.Force);
-        else if(!_isgrounded) _rb.AddForce(_moveDirection.normalized * _moveSpeed * 10f *_airMultiplier, ForceMode.Force);
+        if(_isgrounded) _rb.AddForce(_moveDirection.normalized * (_moveSpeed * 10f), ForceMode.Force);
+        else _rb.AddForce(_moveDirection.normalized * (_moveSpeed * 10f * _airMultiplier), ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -113,5 +119,25 @@ public class PlayerMovement : MonoBehaviour
         _readyToCrouch = true;
         transform.localScale = new Vector3(transform.localScale.x, _startYScale, transform.localScale.z);
         _rb.AddForce(Vector3.down * 50f, ForceMode.Impulse);
+    }
+    
+    private void LookBack()
+    {
+        _lookBack = true;
+        StartCoroutine(Looking());
+    }
+
+    private void LookForward()
+    {
+        _lookBack = false;
+        StartCoroutine(Looking());
+    }
+
+    private IEnumerator Looking()
+    {
+        _animator.SetBool("LookBack", _lookBack);
+        _camera.enabled = false;
+        yield return new WaitForSeconds(1f);
+        if (!_lookBack) _camera.enabled = true;
     }
 }

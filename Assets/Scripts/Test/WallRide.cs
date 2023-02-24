@@ -6,7 +6,6 @@ public class WallRide : MonoBehaviour
     [SerializeField] private LayerMask _wall;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private float _wallRideForce;
-    [SerializeField] private float _maxWallRideTime;
     [SerializeField] private float _wallClimbSpeed;
     private float _wallRideTimer;
     private float _horizontalInput;
@@ -23,8 +22,6 @@ public class WallRide : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _orientation;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private PlayerCamera _camera;
     private Rigidbody _rb;
 
     private void Start()
@@ -84,9 +81,7 @@ public class WallRide : MonoBehaviour
         if ((_orientation.forward - wallForward).magnitude > (_orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
         _rb.AddForce(wallForward * _wallRideForce, ForceMode.Force);
-        if (PlayerCamera._xRotation < 0f)
-            _rb.velocity = new Vector3(_rb.velocity.x, _wallClimbSpeed, _rb.velocity.z);
-        else _rb.velocity = new Vector3(_rb.velocity.x, -_wallClimbSpeed, _rb.velocity.z);
+        _rb.velocity = PlayerCamera._xRotation < 0f ? new Vector3(_rb.velocity.x, _wallClimbSpeed, _rb.velocity.z) : new Vector3(_rb.velocity.x, -_wallClimbSpeed, _rb.velocity.z);
         if(!(_leftWall && _horizontalInput > 0f) && !(_rightWall && _horizontalInput < 0))
             _rb.AddForce(-wallNormal * 100f, ForceMode.Force);
     }
