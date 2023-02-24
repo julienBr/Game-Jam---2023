@@ -909,14 +909,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157665442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: 1.45, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 590099906}
+  m_Father: {fileID: 1561676733}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!65 &160169237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3364,6 +3364,7 @@ MonoBehaviour:
   _wallCheckDistance: 0.7
   _minJumpHeight: 2
   _orientation: {fileID: 1418973901}
+  _animator: {fileID: 1561676736}
 --- !u!114 &590099904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3385,6 +3386,7 @@ MonoBehaviour:
   _ground:
     serializedVersion: 2
     m_Bits: 8
+  _animator: {fileID: 1561676736}
   _orientation: {fileID: 1418973901}
 --- !u!54 &590099905
 Rigidbody:
@@ -3416,7 +3418,6 @@ Transform:
   m_Children:
   - {fileID: 1561676733}
   - {fileID: 1418973901}
-  - {fileID: 157665443}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6038,6 +6039,7 @@ MonoBehaviour:
   _ground:
     serializedVersion: 2
     m_Bits: 8
+  _animator: {fileID: 0}
   _orientation: {fileID: 721806497}
 --- !u!114 &1087463550
 MonoBehaviour:
@@ -6063,6 +6065,7 @@ MonoBehaviour:
   _wallCheckDistance: 0.7
   _minJumpHeight: 2
   _orientation: {fileID: 721806497}
+  _animator: {fileID: 0}
 --- !u!1 &1113289620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384095969250144, guid: 512151c1530b99343a884b12ee9c5e1e, type: 3}
@@ -9119,7 +9122,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: e5862317328542641828f0141b5dc8e0, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4de412006f4d60e499a5e2c8d6d90ddb, type: 2}
+      objectReference: {fileID: 9100000, guid: 58bedd546d214d74fbfbcc7f234a77e4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5862317328542641828f0141b5dc8e0, type: 3}
 --- !u!4 &1561676733 stripped
@@ -9143,9 +9146,14 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
-  m_Height: 1.91
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.955, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1561676736 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e5862317328542641828f0141b5dc8e0, type: 3}
+  m_PrefabInstance: {fileID: 1561676732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1563026346
 BoxCollider:
   m_ObjectHideFlags: 0

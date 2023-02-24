@@ -23,6 +23,7 @@ public class WallRide : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _orientation;
+    [SerializeField] private Animator _animator;
     private Rigidbody _rb;
 
     private void Start()

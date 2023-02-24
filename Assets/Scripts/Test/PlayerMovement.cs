@@ -17,9 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private float _startYScale;
     private bool _readyToCrouch;
     
-    [Header("Ground Check")]
+    [Header("References")]
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _ground;
+    [SerializeField] private Animator _animator;
     private bool _isgrounded;
     
     [SerializeField] private Transform _orientation;
@@ -102,10 +103,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Crouching()
     {
-        transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
-        _rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        yield return null;
+        /*transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
+        _rb.AddForce(Vector3.down * 50f, ForceMode.Impulse);
         yield return new WaitForSeconds(1f);
         _readyToCrouch = true;
         transform.localScale = new Vector3(transform.localScale.x, _startYScale, transform.localScale.z);
+        _rb.AddForce(Vector3.down * 50f, ForceMode.Impulse);*/
     }
 }
