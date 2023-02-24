@@ -24,6 +24,7 @@ public class WallRide : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _orientation;
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerCamera _camera;
     private Rigidbody _rb;
 
     private void Start()
