@@ -5801,7 +5801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 20
   _groundDrag: 5
-  _jumpForce: 15
+  _jumpForce: 14
   _jumpCooldown: 0.25
   _airMultiplier: 1
   _playerHeight: 2
