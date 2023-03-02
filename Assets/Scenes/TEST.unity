@@ -5803,13 +5803,13 @@ MonoBehaviour:
   _groundDrag: 5
   _jumpForce: 14
   _jumpCooldown: 0.25
-  _airMultiplier: 1
+  _airMultiplier: 0.9
   _playerHeight: 2
   _ground:
     serializedVersion: 2
     m_Bits: 8
   _orientation: {fileID: 721806497}
-  _camera: {fileID: 1581792089}
+  _camera: {fileID: 1581792091}
 --- !u!114 &1087463550
 MonoBehaviour:
   m_ObjectHideFlags: 0
