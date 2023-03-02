@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Jumping")]
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _jumpCooldown;
     [SerializeField] private float _airMultiplier;
+    private int _cptJump;
     private bool _readyToJump;
 
     [Header("Crouching")]
@@ -44,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
-        _readyToJump = true;
         _startYScale = transform.localScale.y;
+        _readyToJump = true;
         _readyToCrouch = true;
     }
 
@@ -54,7 +54,12 @@ public class PlayerMovement : MonoBehaviour
         _isgrounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _ground);
         MyInput();
         SpeedControl();
-        _rb.drag = _isgrounded ? _groundDrag : 0f;
+        _rb.drag = _isgrounded ? _groundDrag : 0.5f;
+        if (_isgrounded)
+        {
+            _cptJump = 0;
+            _readyToJump = true;
+        }
     }
 
     private void FixedUpdate()
@@ -81,13 +86,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        if (Input.GetKey(KeyCode.Space) && _readyToJump && _isgrounded)
-        {
-            _readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), _jumpCooldown);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _readyToCrouch && _isgrounded)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _readyToJump) { Jump(); }
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && _readyToCrouch && _isgrounded)
         {
             _readyToCrouch = false;
             Crouch();
@@ -120,11 +120,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
-    }
-
-    private void ResetJump()
-    {
-        _readyToJump = true;
+        _cptJump++;
+        if (_cptJump == 1) _readyToJump = false;
     }
 
     private void Crouch()
