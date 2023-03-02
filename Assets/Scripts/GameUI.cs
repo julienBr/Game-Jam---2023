@@ -10,14 +10,14 @@ public class GameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        CameraController.PlayerDeath += DisplayLooseWindow;
-        CameraController.PlayerWin += DisplayWinWindow;
+        PlayerMovement.PlayerDeath += DisplayLooseWindow;
+        PlayerMovement.PlayerWin += DisplayWinWindow;
     }
 
     private void OnDisable()
     {
-        CameraController.PlayerDeath -= DisplayLooseWindow;
-        CameraController.PlayerWin -= DisplayWinWindow;
+        PlayerMovement.PlayerDeath -= DisplayLooseWindow;
+        PlayerMovement.PlayerWin -= DisplayWinWindow;
     }
 
     private void DisplayLooseWindow()

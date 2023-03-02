@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Transform _orientation;
     [SerializeField] private PlayerCamera _camera;
+    [SerializeField] private AppDatas _data;
     
     private bool _isgrounded;
     private bool _lookBack;
@@ -29,10 +30,15 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalInput;
     private Vector3 _moveDirection;
     private Rigidbody _rb;
+    public static bool _gameCondition;
 
     public delegate void CameraEvent(bool camera);
     public static event CameraEvent CameraLook;
     public static event CameraEvent CameraCrouch;
+    public delegate void ConditionEvent();
+    public static event ConditionEvent PlayerDeath;
+    public static event ConditionEvent PlayerWin;
+    public static event ConditionEvent SpearFall;
     
     private void Start()
     {
@@ -55,7 +61,22 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
     }
-
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Death"))
+        {
+            _gameCondition = true;
+            PlayerDeath?.Invoke();
+        }
+        else if (other.gameObject.CompareTag("Win"))
+        {
+            _gameCondition = true;
+            PlayerWin?.Invoke();
+        }
+        else if (other.gameObject.CompareTag("Spear")) SpearFall?.Invoke();
+    }
+    
     private void MyInput()
     {
         _horizontalInput = Input.GetAxis("Horizontal");

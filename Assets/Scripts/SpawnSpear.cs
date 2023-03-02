@@ -6,12 +6,12 @@ public class SpawnSpear : MonoBehaviour
 
     private void OnEnable()
     {
-        CameraController.SpearFall += SpearSpawn;
+        PlayerMovement.SpearFall += SpearSpawn;
     }
     
     private void OnDisable()
     {
-        CameraController.SpearFall -= SpearSpawn;
+        PlayerMovement.SpearFall -= SpearSpawn;
     }
 
     private void Start()
