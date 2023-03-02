@@ -23,5 +23,6 @@ public class PlayerCamera : MonoBehaviour
         _yRotation += mouseX;
         transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
         _orientation.rotation = Quaternion.Euler(0f, _yRotation, 0f);
+        
     }
 }

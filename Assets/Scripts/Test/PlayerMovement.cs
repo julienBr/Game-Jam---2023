@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Transform _orientation;
-    [SerializeField] private Animator _animator;
     [SerializeField] private PlayerCamera _camera;
     
     private bool _isgrounded;
@@ -31,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _moveDirection;
     private Rigidbody _rb;
 
+    public delegate void CameraEvent(bool camera);
+    public static event CameraEvent CameraLook;
+    public static event CameraEvent CameraCrouch;
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -113,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, 0f, transform.localScale.z);
         _rb.AddForce(Vector3.down * 50f, ForceMode.Impulse);
         _camera.enabled = false;
-        _animator.SetTrigger("Crouch");
+        CameraCrouch?.Invoke(_camera.GetComponent<PlayerCamera>().enabled);
         yield return new WaitForSeconds(1f);
         _camera.enabled = true;
         _readyToCrouch = true;
@@ -135,9 +138,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Looking()
     {
-        _animator.SetBool("LookBack", _lookBack);
-        _camera.enabled = false;
-        yield return new WaitForSeconds(1f);
-        if (!_lookBack) _camera.enabled = true;
+        _camera.GetComponent<PlayerCamera>().enabled = false;
+        CameraLook?.Invoke(_lookBack);
+        yield return new WaitForSeconds(0.5f);
+        if (!_lookBack) _camera.GetComponent<PlayerCamera>().enabled = true;
     }
 }

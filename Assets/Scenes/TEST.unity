@@ -5809,8 +5809,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _orientation: {fileID: 721806497}
-  _animator: {fileID: 1248005134}
-  _camera: {fileID: 1581792091}
+  _camera: {fileID: 1581792089}
 --- !u!114 &1087463550
 MonoBehaviour:
   m_ObjectHideFlags: 0
