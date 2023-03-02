@@ -11,6 +11,7 @@ public class PlayerCamera : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     private void Update()
