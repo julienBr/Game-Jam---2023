@@ -21,13 +21,7 @@ public class MoveCamera : MonoBehaviour
 
     private void Update() { transform.position = _cameraPosition.position; }
     
-    private void CrouchCamera(bool camera)
-    {
-        if (!camera) { _animator.SetTrigger("Crouch"); }
-    }
+    private void CrouchCamera(bool camera) { if (!camera) _animator.SetTrigger("Crouch"); }
 
-    private void LookCamera(bool camera)
-    {
-        _animator.SetBool("LookBack", camera);
-    }
+    private void LookCamera(bool camera) { _animator.SetBool("LookBack", camera); }
 }
